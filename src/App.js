@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+// import About from './components/About';
+import FormOne from './components/FormOne';
+import NavBar from './components/NavBar';
 
 function App() {
+  const [mode, setMode] = useState('light')
+  const [modeTxt, setModeTxt] = useState('Enable Dark Mode')
+
+  const toggleMode = ()=>{
+    if (mode==='light'){
+      setMode('dark')
+      setModeTxt('Enable Light Mode')
+      document.body.style.backgroundColor = 'grey'
+    }
+    else{
+      setMode('light')
+      setModeTxt('Enable Dark Mode')
+      document.body.style.backgroundColor = 'white'
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavBar title='My app' mode={mode} toggleMode={toggleMode} modeTxt={modeTxt}/>
+      <div className='container my-3'>
+        <FormOne heading={'Text input Form'} mode={mode}/>
+        {/* <About/> */}
+      </div>
+    </>
   );
 }
 
