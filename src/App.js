@@ -1,31 +1,45 @@
+// import logo from './logo.svg';
+// import { useState } from 'react';
 import { useState } from 'react';
 import './App.css';
-// import About from './components/About';
-import FormOne from './components/FormOne';
 import NavBar from './components/NavBar';
+import TextBody from './components/TextBody';
+import Alert from './components/Alert';
 
 function App() {
   const [mode, setMode] = useState('light')
-  const [modeTxt, setModeTxt] = useState('Enable Dark Mode')
+  const [alert, setAlert] = useState(null);
 
+  const alertHandler = (type, message)=>setAlert({
+    alertType: type,
+    msg: message
+  })
+
+  
+  setTimeout(()=>{
+    setAlert(null)
+  }, 1500)
+  
   const toggleMode = ()=>{
-    if (mode==='light'){
+    // let pickedCol = document.getElementById('')
+    if(mode==='light'){
+
       setMode('dark')
-      setModeTxt('Enable Light Mode')
-      document.body.style.backgroundColor = 'grey'
+      document.body.style.backgroundColor = '#383a3c'
+      // alertHandler('success', 'Enabled dark mode.')
     }
     else{
       setMode('light')
-      setModeTxt('Enable Dark Mode')
-      document.body.style.backgroundColor = 'white'
+      document.body.style.backgroundColor = 'white';
+      // alertHandler('success', 'Disabled dark mode.')
     }
   }
   return (
     <>
-      <NavBar title='My app' mode={mode} toggleMode={toggleMode} modeTxt={modeTxt}/>
-      <div className='container my-3'>
-        <FormOne heading={'Text input Form'} mode={mode}/>
-        {/* <About/> */}
+      <NavBar title='Text Analyzer' mode={mode} toggleMode={toggleMode}/>
+      <Alert alert={alert}/>
+      <div className='container'>
+        <TextBody mode={mode} alertHandler={alertHandler}/>
       </div>
     </>
   );
