@@ -5,14 +5,14 @@ import './App.css';
 import NavBar from './components/NavBar';
 import TextBody from './components/TextBody';
 import Alert from './components/Alert';
-import About from './components/About';
+// import About from './components/About';
 
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from "react-router-dom";
+// import {
+//   BrowserRouter as Router,
+//   Routes,
+//   Route
+// } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState('light')
@@ -52,19 +52,19 @@ function App() {
   }
   return (
     <>
-      <Router>
+      {/* <Router> */}
         <NavBar title='Text Analyzer' mode={mode} toggleMode={toggleMode}/>
         <Alert alert={alert}/>
         <div className='container'>
-          {/* <TextBody mode={mode} alertHandler={alertHandler}/> */}
+          <TextBody mode={mode} alertHandler={alertHandler}/>
 
-          <Routes>
+          {/* <Routes>
             <Route exact path="/about" element={<About/>}/>
             <Route exact path="/" element={<TextBody mode={mode} alertHandler={alertHandler}/>}/>
-          </Routes>
+          </Routes> */}
 
         </div>
-      </Router>
+      {/* </Router> */}
     </>
   );
 }
